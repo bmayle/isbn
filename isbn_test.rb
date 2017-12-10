@@ -29,9 +29,18 @@ class TestISBN < Minitest::Test
     	assert_equal(true, check_isbn(isbn_num))
     end
 
-    def test_that_isbn_invalid
-    	isbn_num = '7896541230'
-    	assert_equal(false, isbn_valid(isbn_num))
+    def test_that_isbn_invalid_for_10_digits
+    	isbn_num = 7896541230
+    	assert_equal(false, isbn_valid_10(isbn_num))
     end
 
+    def test_that_isbn_valid_for_10_digits
+    	isbn_num = 9604250590
+    	assert_equal(true, isbn_valid_10(isbn_num))
+    end
+
+    def test_that_isbn_invalid_for_13_digits
+    	isbn_num = 7410258963012
+    	assert_equal(false, isbn_valid_13(isbn_num))
+    end
 end
