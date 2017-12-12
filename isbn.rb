@@ -1,7 +1,7 @@
 def isbn(isbn_num)
 	isbn_num.class
 	if isbn_num.class == Integer
-		Integer
+		true
 	else
 		false
 	end
@@ -17,15 +17,15 @@ def check_isbn(isbn_num)
 end
 
 def validate_isbn_10(isbn_num)
-	ten_isbn = isbn_num.to_s.split('')
+	isbn_arr = isbn_num.to_s.split('')
 	
-	isbn_length = ten_isbn.count	
+	isbn_length = isbn_arr.count	
 	counter = 0
 	sum = 0
 	input = 10
 
 	isbn_length.times do
-		sum = sum + ten_isbn[counter].to_i * input
+		sum = sum + isbn_arr[counter].to_i * input
 		counter = counter + 1
 		input = input - 1
 	end
@@ -38,31 +38,31 @@ def validate_isbn_10(isbn_num)
 end
 
 def validate_isbn_13(isbn_num)
-	thirteen_isbn = isbn_num.to_s.split('')
+	isbn_arr = isbn_num.to_s.split('')
 	
-	isbn_length = thirteen_isbn.count	
+	isbn_length = isbn_arr.count	
 	counter = 0
 	sum = 0
 	input = 0
 
 	isbn_length.times do
-		thirteen_isbn[counter] = thirteen_isbn[counter].to_i 
+		isbn_arr[counter] = isbn_arr[counter].to_i
 		if counter != 12
-			if counter % 2 == 0 
-				sum = sum + counter * 3
-			elsif 
-				sum = sum + counter
-			end
-			counter = counter + 1
+			false
+		elsif counter % 2 == 0 
+			sum = sum + counter * 3
+		elsif 
+			sum = sum + counter
 		end
+		counter = counter + 1
 	end
+
 	input = sum % 10 
 	input = 10 - input
 
-
-	if input == thirteen_isbn[12]
+	if input == isbn_arr[12]
 		true
 	else
 		false
 	end
-end
+end	

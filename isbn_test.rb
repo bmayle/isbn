@@ -7,7 +7,7 @@ class TestISBN < Minitest::Test
 	end
 
 	def test_assert_that_isbn_num_is_integer
-    	assert_equal(Integer, isbn(7))
+    	assert_equal(true, isbn(7))
     end
 
     def test_assert_that_wombat_is_not_a_integer
@@ -44,12 +44,12 @@ class TestISBN < Minitest::Test
     	assert_equal(true, validate_isbn_10(isbn_num))
     end
 
-    def test_for_isbn_invalid_for_13_figits
+    def test_for_isbn_invalid_for_13_digits
 		isbn_num = 1234567891011
 		assert_equal(false, validate_isbn_13(isbn_num))
 	end
 
-	def test_for_isbn_valid_for_13_figits
+	def test_for_isbn_valid_for_13_digits
 		isbn_num = 9781566199094 
 		assert_equal(true, validate_isbn_13(isbn_num))
 	end
